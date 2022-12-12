@@ -7,6 +7,7 @@ figma.ui.onmessage = async msg => {
         console.log("Gender is: ", msg.gender)
         console.log("First name used: ", msg.hasFirstName)
         console.log("Last name used: ", msg.hasLastName)
+        console.log("Is mixed country: ", msg.isMixedCountry)
 
         /**
          * Generate the figma text object and wrap it in a node, so we can zoom on it later

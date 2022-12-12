@@ -32,7 +32,7 @@
 <section>
     <h2>Common country of origin</h2>
     <div class="input-pair">
-        <input type="radio" id="isMixedCountryRadio" checked/>
+        <input type="radio" id="isMixedCountryRadio" checked onclick="isMixedCountry(true)"/>
         <div class="label">
             <label for="isMixedCountryRadio">
                 Mixed
@@ -42,10 +42,10 @@
     </div>
 
     <div>
-        <div  class="input-pair">
-            <input type="radio" id="!isMixedCountryRadio"/>
+        <div class="input-pair">
+            <input type="radio" id="isNotMixedCountryRadio" onclick="isMixedCountry(false)"/>
             <div class="label">
-                <label for="!isMixedCountryRadio">
+                <label for="isNotMixedCountryRadio">
                     Same
                 </label>
                 <span class="meta-text">(first and last name are from the same country)</span>
@@ -75,6 +75,9 @@
     const genderFemaleRadio = document.getElementById('isFemaleGender')
     const genderMaleRadio = document.getElementById('isMaleGender')
 
+    const isNotMixedCountryRadio = document.getElementById('isNotMixedCountryRadio')
+    const isMixedCountryRadio = document.getElementById('isMixedCountryRadio')
+
     function changeGender(gen) {
         gender = gen.value
         switch (gender) {
@@ -96,13 +99,27 @@
         }
     }
 
+    function isMixedCountry(bool) {
+        switch (bool) {
+            case true:
+                isMixedCountryRadio.checked = true
+                isNotMixedCountryRadio.checked = false
+                break;
+            case false:
+                isMixedCountryRadio.checked = false
+                isNotMixedCountryRadio.checked = true
+                break;
+        }
+    }
+
     /**
      * Trigger generation
      * */
     document.getElementById('generate').onclick = () => {
         let hasFirstName = hasFirstNameCheckbox.checked
         let hasLastName = hasLastNameCheckbox.checked
-        parent.postMessage({pluginMessage: {type: 'generate- name', gender, hasFirstName, hasLastName}}, '*')
+        let isMixedCountry = isMixedCountryRadio.checked
+        parent.postMessage({pluginMessage: {type: 'generate- name', gender, hasFirstName, hasLastName, isMixedCountry}}, '*')
     }
 
     /**
@@ -124,6 +141,10 @@
         accent-color: #A5E3B9;
     }
 
+    h1,h2{
+        margin: 0;
+    }
+
     h1 {
         font-family: 'League Spartan', sans-serif;
         font-size: 32px;
@@ -132,6 +153,10 @@
     h2 {
         font-family: 'League Spartan', sans-serif;
         font-size: 22px;
+    }
+
+    section + section {
+        margin-top: 24px;
     }
 
     .meta-text {
@@ -176,7 +201,7 @@
         background: #ffffff;
         border: 4px solid #FFF;
         box-shadow: 0 0 0 1px #000;
-        margin: 0px;
+        margin: 0;
     }
 
     input[type="radio" i]:hover {
@@ -187,7 +212,7 @@
         background: #A5E3B9;
     }
 
-    label{
+    label {
         cursor: pointer;
     }
 
@@ -204,11 +229,11 @@
         margin-top: 8px;
     }
 
-    .buttons{
+    .buttons {
         text-align: right;
     }
 
-    .buttons button + button{
+    .buttons button + button {
         margin-left: 8px;
     }
 
