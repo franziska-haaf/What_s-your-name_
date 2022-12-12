@@ -1,11 +1,11 @@
 <h1>Generate name</h1>
 <!-- First or last name? -->
 <section>
-    <div>
+    <div class="input-pair">
         <input type="checkbox" id="hasFirstNameCheckbox" checked/>
         <label for="hasFirstNameCheckbox">First name</label>
     </div>
-    <div>
+    <div class="input-pair">
         <input type="checkbox" id="hasLastNameCheckbox"/>
         <label for="hasLastNameCheckbox">Last name</label>
     </div>
@@ -14,15 +14,15 @@
 <!-- Gender -->
 <section>
     <h2>Common gender</h2>
-    <div>
+    <div class="input-pair">
         <input type="radio" id="isNeutralGender" value="NEUTRAL" checked onclick="changeGender(this)"/>
         <label for="isNeutralGender">Neutral</label>
     </div>
-    <div>
+    <div class="input-pair">
         <input type="radio" id="isFemaleGender" value="FEMALE" onclick="changeGender(this)"/>
         <label for="isFemaleGender">Female</label>
     </div>
-    <div>
+    <div class="input-pair">
         <input type="radio" id="isMaleGender" value="MALE" onclick="changeGender(this)"/>
         <label for="isMaleGender">Male</label>
     </div>
@@ -31,28 +31,30 @@
 <!-- Country -->
 <section>
     <h2>Common country of origin</h2>
-    <div>
-        <input type="radio" id="isMixedCountryRadio" value="true"/>
+    <div class="input-pair">
+        <input type="radio" id="isMixedCountryRadio" checked/>
         <div class="label">
             <label for="isMixedCountryRadio">
                 Mixed
             </label>
-            <span class="meta-text">first and last name are from random countries</span>
+            <span class="meta-text">(first and last name are from random countries)</span>
         </div>
     </div>
 
     <div>
-        <div>
-            <input type="radio" id="!isMixedCountryRadio" value="false"/>
+        <div  class="input-pair">
+            <input type="radio" id="!isMixedCountryRadio"/>
             <div class="label">
                 <label for="!isMixedCountryRadio">
                     Same
                 </label>
-                <span class="meta-text">first and last name are from the same country</span>
+                <span class="meta-text">(first and last name are from the same country)</span>
             </div>
         </div>
-        Country input here <br>
-        Written in romanised/national language here
+        <div>
+            Country input here <br>
+            Written in romanised/national language here
+        </div>
     </div>
 
 </section>
@@ -146,6 +148,7 @@
         border-radius: 0;
         padding: 0 16px;
         position: relative;
+        cursor: pointer;
     }
 
     button:hover:before {
@@ -173,6 +176,7 @@
         background: #ffffff;
         border: 4px solid #FFF;
         box-shadow: 0 0 0 1px #000;
+        margin: 0px;
     }
 
     input[type="radio" i]:hover {
@@ -183,5 +187,29 @@
         background: #A5E3B9;
     }
 
+    label{
+        cursor: pointer;
+    }
+
+    .input-pair {
+        display: flex;
+        align-items: center;
+    }
+
+    .input-pair label {
+        margin-left: 8px;
+    }
+
+    section > :not(:first-child) {
+        margin-top: 8px;
+    }
+
+    .buttons{
+        text-align: right;
+    }
+
+    .buttons button + button{
+        margin-left: 8px;
+    }
 
 </style>
