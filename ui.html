@@ -57,7 +57,6 @@
     <button id="generate">Generate name</button>
 </div>
 
-<!--<p>Count: <input id="count" type="number" value="5"></p>-->
 <script>
     const GENDERS = {NEUTRAL: 'NEUTRAL', FEMALE: 'FEMALE', MALE: 'MALE'}
     let gender = "NEUTRAL"
@@ -70,8 +69,7 @@
     const genderMaleRadio = document.getElementById('isMaleGender')
 
     function changeGender(gen) {
-        let chosenGender = gen.value
-        gender = chosenGender
+        gender = gen.value
         switch (gender) {
             case GENDERS.NEUTRAL:
                 genderNeutralRadio.checked = true
