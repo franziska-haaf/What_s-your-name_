@@ -1,0 +1,109 @@
+<h2>Generate name</h2>
+
+<!-- First or last name? -->
+<section>
+    <div>
+        <input type="checkbox" id="hasFirstNameCheckbox" checked/>
+        <label for="hasFirstNameCheckbox">First name</label>
+    </div>
+    <div>
+        <input type="checkbox" id="hasLastNameCheckbox"/>
+        <label for="hasLastNameCheckbox">Last name</label>
+    </div>
+</section>
+
+<!-- Gender -->
+<section>
+    <h3>Common gender</h3>
+    <div>
+        <input type="radio" id="isNeutralGender" value="NEUTRAL" checked onclick="changeGender(this)"/>
+        <label for="isNeutralGender">Neutral</label>
+    </div>
+    <div>
+        <input type="radio" id="isFemaleGender" value="FEMALE" onclick="changeGender(this)"/>
+        <label for="isFemaleGender">Female</label>
+    </div>
+    <div>
+        <input type="radio" id="isMaleGender" value="MALE" onclick="changeGender(this)"/>
+        <label for="isMaleGender">Male</label>
+    </div>
+</section>
+
+<!-- Country -->
+<section>
+    <h3>Common country of origin</h3>
+    <div>
+        <input type="radio" id="isMixedCountry" value="true"/>
+        <label for="isMixedCountry">
+            Mixed <span class="meta-text">first and last name are from random countries</span>
+        </label>
+    </div>
+
+    <div>
+        <div>
+            <input type="radio" id="!isMixedCountry" value="false"/>
+            <label for="!isMixedCountry">
+                Same <span class="meta-text">first and last name are from the same country</span>
+            </label>
+        </div>
+        Country input here <br>
+        Written in romanised/national language here
+    </div>
+
+</section>
+
+<div class="buttons">
+    <button id="close">Close dialog</button>
+    <button id="generate">Generate name</button>
+</div>
+
+<!--<p>Count: <input id="count" type="number" value="5"></p>-->
+<script>
+    const GENDERS = {NEUTRAL: 'NEUTRAL', FEMALE: 'FEMALE', MALE: 'MALE'}
+    let gender = "NEUTRAL"
+
+    const hasFirstNameCheckbox = document.getElementById('hasFirstNameCheckbox')
+    const hasLastNameCheckbox = document.getElementById('hasLastNameCheckbox')
+
+    const genderNeutralRadio = document.getElementById('isNeutralGender')
+    const genderFemaleRadio = document.getElementById('isFemaleGender')
+    const genderMaleRadio = document.getElementById('isMaleGender')
+
+    function changeGender(gen) {
+        let chosenGender = gen.value
+        gender = chosenGender
+        switch (gender) {
+            case GENDERS.NEUTRAL:
+                genderNeutralRadio.checked = true
+                genderFemaleRadio.checked = false
+                genderMaleRadio.checked = false
+                break;
+            case GENDERS.FEMALE:
+                genderNeutralRadio.checked = false
+                genderFemaleRadio.checked = true
+                genderMaleRadio.checked = false
+                break;
+            case GENDERS.MALE:
+                genderNeutralRadio.checked = false
+                genderFemaleRadio.checked = false
+                genderMaleRadio.checked = true
+                break;
+        }
+    }
+
+    /**
+     * Trigger generation
+     * */
+    document.getElementById('generate').onclick = () => {
+        let hasFirstName = hasFirstNameCheckbox.checked
+        let hasLastName = hasLastNameCheckbox.checked
+        parent.postMessage({pluginMessage: {type: 'generate- name', gender, hasFirstName, hasLastName }}, '*')
+    }
+
+    /**
+     * Close dialog
+     * */
+    document.getElementById('close').onclick = () => {
+        parent.postMessage({pluginMessage: {type: 'close'}}, '*')
+    }
+</script>

@@ -1,0 +1,11 @@
+{
+  "name": "What's your name?",
+  "id": "1181153051409418077",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma",
+    "figjam"
+  ],
+  "ui": "ui.html"
+}
