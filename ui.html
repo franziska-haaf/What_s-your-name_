@@ -1,5 +1,4 @@
-<h2>Generate name</h2>
-
+<h1>Generate name</h1>
 <!-- First or last name? -->
 <section>
     <div>
@@ -14,7 +13,7 @@
 
 <!-- Gender -->
 <section>
-    <h3>Common gender</h3>
+    <h2>Common gender</h2>
     <div>
         <input type="radio" id="isNeutralGender" value="NEUTRAL" checked onclick="changeGender(this)"/>
         <label for="isNeutralGender">Neutral</label>
@@ -31,20 +30,26 @@
 
 <!-- Country -->
 <section>
-    <h3>Common country of origin</h3>
+    <h2>Common country of origin</h2>
     <div>
-        <input type="radio" id="isMixedCountry" value="true"/>
-        <label for="isMixedCountry">
-            Mixed <span class="meta-text">first and last name are from random countries</span>
-        </label>
+        <input type="radio" id="isMixedCountryRadio" value="true"/>
+        <div class="label">
+            <label for="isMixedCountryRadio">
+                Mixed
+            </label>
+            <span class="meta-text">first and last name are from random countries</span>
+        </div>
     </div>
 
     <div>
         <div>
-            <input type="radio" id="!isMixedCountry" value="false"/>
-            <label for="!isMixedCountry">
-                Same <span class="meta-text">first and last name are from the same country</span>
-            </label>
+            <input type="radio" id="!isMixedCountryRadio" value="false"/>
+            <div class="label">
+                <label for="!isMixedCountryRadio">
+                    Same
+                </label>
+                <span class="meta-text">first and last name are from the same country</span>
+            </div>
         </div>
         Country input here <br>
         Written in romanised/national language here
@@ -95,7 +100,7 @@
     document.getElementById('generate').onclick = () => {
         let hasFirstName = hasFirstNameCheckbox.checked
         let hasLastName = hasLastNameCheckbox.checked
-        parent.postMessage({pluginMessage: {type: 'generate- name', gender, hasFirstName, hasLastName }}, '*')
+        parent.postMessage({pluginMessage: {type: 'generate- name', gender, hasFirstName, hasLastName}}, '*')
     }
 
     /**
@@ -105,3 +110,51 @@
         parent.postMessage({pluginMessage: {type: 'close'}}, '*')
     }
 </script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@200;700&display=swap');
+
+    * {
+        color: rgba(0, 0, 0, .87);
+        font-family: 'League Spartan', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-family: 'League Spartan', sans-serif;
+        font-size: 32px;
+    }
+
+    h2 {
+        font-family: 'League Spartan', sans-serif;
+        font-size: 22px;
+    }
+
+    .meta-text {
+        color: rgba(0, 0, 0, .6);
+    }
+
+    button{
+        font-family: 'League Spartan', sans-serif;
+        font-weight: 700;
+        height: 40px;
+        box-sizing: border-box;
+        border: none;
+        background-color: #A5E3B9;
+        border-radius: 0;
+        padding: 0 16px;
+        position: relative;
+    }
+    button:hover:before{
+        position: absolute;
+        z-index: 100;
+        content: " ";
+        width: 8px;
+        height: 40px;
+        background-color: #F9B6A8;
+        left: 0;
+        top: 0;
+    }
+
+</style>
