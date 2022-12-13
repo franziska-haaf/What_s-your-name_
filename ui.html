@@ -10,9 +10,10 @@
         <label for="hasLastNameCheckbox">Last name</label>
     </div>
 </section>
+<div id="nameError" class="error hidden">Choose at least 1!</div>
 
 <!-- Gender -->
-<section>
+<section class="margin-top-24">
     <h2>Common gender</h2>
     <section class="align-horizontal">
         <div class="input-pair">
@@ -31,7 +32,7 @@
 </section>
 
 <!-- Country -->
-<section>
+<section class="margin-top-24">
     <h2>Common country of origin</h2>
     <div class="input-pair">
         <input type="radio" id="isMixedCountryRadio" checked onclick="isMixedCountry(true)"/>
@@ -76,6 +77,8 @@
     const isNotMixedCountryRadio = document.getElementById('isNotMixedCountryRadio')
     const isMixedCountryRadio = document.getElementById('isMixedCountryRadio')
 
+    const nameError = document.getElementById('nameError')
+
     function changeGender(gen) {
         gender = gen.value
         switch (gender) {
@@ -110,22 +113,34 @@
         }
     }
 
+    function validateInputs() {
+        if (!hasFirstNameCheckbox.checked && !hasLastNameCheckbox.checked) {
+            nameError.classList.remove('hidden')
+            return false
+        } else {
+            nameError.classList.add('hidden')
+            return true
+        }
+    }
+
     /**
      * Trigger generation
      * */
     document.getElementById('generate').onclick = () => {
-        let hasFirstName = hasFirstNameCheckbox.checked
-        let hasLastName = hasLastNameCheckbox.checked
-        let isMixedCountry = isMixedCountryRadio.checked
-        parent.postMessage({
-            pluginMessage: {
-                type: 'generate- name',
-                gender,
-                hasFirstName,
-                hasLastName,
-                isMixedCountry
-            }
-        }, '*')
+        if (validateInputs()) {
+            let hasFirstName = hasFirstNameCheckbox.checked
+            let hasLastName = hasLastNameCheckbox.checked
+            let isMixedCountry = isMixedCountryRadio.checked
+            parent.postMessage({
+                pluginMessage: {
+                    type: 'generate- name',
+                    gender,
+                    hasFirstName,
+                    hasLastName,
+                    isMixedCountry
+                }
+            }, '*')
+        }
     }
 
     /**
@@ -162,11 +177,6 @@
 
     h2 {
         font-size: 22px;
-    }
-
-
-    section + section {
-        margin-top: 24px;
     }
 
     .align-horizontal {
@@ -248,13 +258,30 @@
         margin-left: 8px;
     }
 
+    /*Error*/
+    .error {
+        color: #8a4136;
+        padding: 16px;
+        background-color: rgba(249, 182, 168, 0.48);
+        margin-bottom: 16px;
+    }
+
+    .error.hidden {
+        display: none;
+    }
+
     /*Margins*/
     .margin-top-8 {
         margin-top: 8px;
     }
 
+    .margin-top-24 {
+        margin-top: 24px;
+    }
+
     .margin-left-48 {
         margin-left: 48px;
     }
+
 
 </style>
