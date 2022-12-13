@@ -1,11 +1,11 @@
 <h1>Generate name</h1>
 <!-- First or last name? -->
-<section>
+<section class="align-horizontal">
     <div class="input-pair">
         <input type="checkbox" id="hasFirstNameCheckbox" checked/>
         <label for="hasFirstNameCheckbox">First name</label>
     </div>
-    <div class="input-pair">
+    <div class="input-pair margin-left-48">
         <input type="checkbox" id="hasLastNameCheckbox"/>
         <label for="hasLastNameCheckbox">Last name</label>
     </div>
@@ -14,18 +14,20 @@
 <!-- Gender -->
 <section>
     <h2>Common gender</h2>
-    <div class="input-pair">
-        <input type="radio" id="isNeutralGender" value="NEUTRAL" checked onclick="changeGender(this)"/>
-        <label for="isNeutralGender">Neutral</label>
-    </div>
-    <div class="input-pair">
-        <input type="radio" id="isFemaleGender" value="FEMALE" onclick="changeGender(this)"/>
-        <label for="isFemaleGender">Female</label>
-    </div>
-    <div class="input-pair">
-        <input type="radio" id="isMaleGender" value="MALE" onclick="changeGender(this)"/>
-        <label for="isMaleGender">Male</label>
-    </div>
+    <section class="align-horizontal">
+        <div class="input-pair">
+            <input type="radio" id="isNeutralGender" value="NEUTRAL" checked onclick="changeGender(this)"/>
+            <label for="isNeutralGender">Neutral</label>
+        </div>
+        <div class="input-pair margin-left-48">
+            <input type="radio" id="isFemaleGender" value="FEMALE" onclick="changeGender(this)"/>
+            <label for="isFemaleGender">Female</label>
+        </div>
+        <div class="input-pair margin-left-48">
+            <input type="radio" id="isMaleGender" value="MALE" onclick="changeGender(this)"/>
+            <label for="isMaleGender">Male</label>
+        </div>
+    </section>
 </section>
 
 <!-- Country -->
@@ -33,23 +35,19 @@
     <h2>Common country of origin</h2>
     <div class="input-pair">
         <input type="radio" id="isMixedCountryRadio" checked onclick="isMixedCountry(true)"/>
-        <div class="label">
-            <label for="isMixedCountryRadio">
-                Mixed
-            </label>
+        <label for="isMixedCountryRadio">
+            Mixed
             <span class="meta-text">(first and last name are from random countries)</span>
-        </div>
+        </label>
     </div>
 
     <div>
-        <div class="input-pair">
+        <div class="input-pair margin-top-8">
             <input type="radio" id="isNotMixedCountryRadio" onclick="isMixedCountry(false)"/>
-            <div class="label">
-                <label for="isNotMixedCountryRadio">
-                    Same
-                </label>
+            <label for="isNotMixedCountryRadio">
+                Same
                 <span class="meta-text">(first and last name are from the same country)</span>
-            </div>
+            </label>
         </div>
         <div>
             Country input here <br>
@@ -119,7 +117,15 @@
         let hasFirstName = hasFirstNameCheckbox.checked
         let hasLastName = hasLastNameCheckbox.checked
         let isMixedCountry = isMixedCountryRadio.checked
-        parent.postMessage({pluginMessage: {type: 'generate- name', gender, hasFirstName, hasLastName, isMixedCountry}}, '*')
+        parent.postMessage({
+            pluginMessage: {
+                type: 'generate- name',
+                gender,
+                hasFirstName,
+                hasLastName,
+                isMixedCountry
+            }
+        }, '*')
     }
 
     /**
@@ -133,6 +139,10 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@200;700&display=swap');
 
+    body {
+        margin: 24px;
+    }
+
     * {
         color: rgba(0, 0, 0, .87);
         font-family: 'League Spartan', sans-serif;
@@ -141,22 +151,27 @@
         accent-color: #A5E3B9;
     }
 
-    h1,h2{
-        margin: 0;
+    h1, h2 {
+        font-family: 'League Spartan', sans-serif;
+        margin: 0 0 8px;
     }
 
     h1 {
-        font-family: 'League Spartan', sans-serif;
         font-size: 32px;
     }
 
     h2 {
-        font-family: 'League Spartan', sans-serif;
         font-size: 22px;
     }
 
+
     section + section {
         margin-top: 24px;
+    }
+
+    .align-horizontal {
+        display: flex;
+        flex-direction: row;
     }
 
     .meta-text {
@@ -214,19 +229,15 @@
 
     label {
         cursor: pointer;
-    }
-
-    .input-pair {
-        display: flex;
-        align-items: center;
-    }
-
-    .input-pair label {
+        padding-top: 14px;
+        padding-bottom: 10px;
         margin-left: 8px;
     }
 
-    section > :not(:first-child) {
-        margin-top: 8px;
+    .input-pair {
+        height: 40px;
+        display: flex;
+        align-items: center;
     }
 
     .buttons {
@@ -235,6 +246,15 @@
 
     .buttons button + button {
         margin-left: 8px;
+    }
+
+    /*Margins*/
+    .margin-top-8 {
+        margin-top: 8px;
+    }
+
+    .margin-left-48 {
+        margin-left: 48px;
     }
 
 </style>
