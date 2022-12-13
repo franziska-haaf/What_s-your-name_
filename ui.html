@@ -51,8 +51,13 @@
             </label>
         </div>
         <div>
-            Country input here <br>
-            Written in romanised/national language here
+            <select name="countries" id="countrySelect">
+                <option selected value="none">Choose country (optional)</option>
+                <option value="de">Germany</option>
+                <option value="usa">USA</option>
+                <option value="uk">United Kingdom</option>
+            </select>
+            <p class="meta-text">Optional. Is random if none is selected</p>
         </div>
     </div>
 
@@ -188,6 +193,10 @@
         color: rgba(0, 0, 0, .6);
     }
 
+    p {
+        margin: 4px 0;
+    }
+
     button {
         font-family: 'League Spartan', sans-serif;
         font-weight: 700;
@@ -212,6 +221,7 @@
         top: 0;
     }
 
+    /* Inputs */
     input[type="radio" i], input[type="checkbox" i] {
         height: 24px;
         width: 24px;
@@ -250,6 +260,33 @@
         align-items: center;
     }
 
+    /*Select*/
+    select {
+        height: 40px;
+        padding: 0 32px 0 16px;
+        border-radius: 0;
+        border: none;
+        outline: 1px solid #000;
+        box-sizing: border-box;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: #ffffff url("data:image/svg+xml;utf8,<svg viewBox='0 0 140 140' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><g><path d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='black'/></g></svg>") no-repeat right 4px center;
+    }
+
+    select:focus-visible {
+        border-radius: 0;
+        outline: 2px solid #A5E3B9;
+        border: none;
+    }
+
+    select :first-child {
+        color: rgba(0, 0, 0, .4);
+    }
+
+
+    /*Button*/
     .buttons {
         text-align: right;
     }
