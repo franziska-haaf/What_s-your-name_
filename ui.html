@@ -22,11 +22,7 @@
             <h2>Common gender</h2>
             <div class="align-horizontal radio-group">
                 <div>
-                    <input type="radio" id="isNeutralGender" value="Neutral" checked onclick="changeGender(this)"/>
-                    <label for="isNeutralGender">Neutral</label>
-                </div>
-                <div>
-                    <input type="radio" id="isFemaleGender" value="Female" onclick="changeGender(this)"/>
+                    <input type="radio" id="isFemaleGender" value="Female" checked onclick="changeGender(this)"/>
                     <label for="isFemaleGender">Female</label>
                 </div>
                 <div>
@@ -78,12 +74,11 @@
 <script>
     const GENDERS = {x: 'Neutral', f: 'Female', m: 'Male'}
     //todo get from data.ts
-    let gender = "Neutral"
+    let gender = "Female"
 
     const hasFirstNameCheckbox = document.getElementById('hasFirstNameCheckbox')
     const hasLastNameCheckbox = document.getElementById('hasLastNameCheckbox')
 
-    const genderNeutralRadio = document.getElementById('isNeutralGender')
     const genderFemaleRadio = document.getElementById('isFemaleGender')
     const genderMaleRadio = document.getElementById('isMaleGender')
 
@@ -98,18 +93,11 @@
     function changeGender(gen) {
         gender = gen.value
         switch (gender) {
-            case GENDERS.x:
-                genderNeutralRadio.checked = true
-                genderFemaleRadio.checked = false
-                genderMaleRadio.checked = false
-                break;
             case GENDERS.f:
-                genderNeutralRadio.checked = false
                 genderFemaleRadio.checked = true
                 genderMaleRadio.checked = false
                 break;
             case GENDERS.m:
-                genderNeutralRadio.checked = false
                 genderFemaleRadio.checked = false
                 genderMaleRadio.checked = true
                 break;
