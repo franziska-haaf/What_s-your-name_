@@ -39,7 +39,9 @@
         <!-- Country -->
         <section>
             <h2>Common country of origin</h2>
-            <div class="margin-bottom-8 text-subtle">Random (probably different) or same countries for the last and first name.</div>
+            <div class="margin-bottom-8 text-subtle">Random (probably different) or same countries for the last and
+                first name.
+            </div>
             <div class="align-horizontal radio-group">
                 <div>
                     <input type="radio" id="isMixedCountryRadio" checked onclick="isMixedCountry(true)"/>
@@ -51,8 +53,8 @@
                 </div>
             </div>
         </section>
-        <!-- todo hide if random country -->
-        <section>
+
+        <section id="ifCountryIsSame" class="hidden">
             <select name="countries" class="margin-bottom-8" style="width: 300px;" id="countrySelect">
                 <option value="" selected>Choose country</option>
                 <option value="de">Germany</option>
@@ -87,6 +89,7 @@
 
     const isNotMixedCountryRadio = document.getElementById('isNotMixedCountryRadio')
     const isMixedCountryRadio = document.getElementById('isMixedCountryRadio')
+    const ifCountryIsSameWrapper = document.getElementById('ifCountryIsSame')
 
     const isNationalLanguageCheckbox = document.getElementById('isNationalLanguageCheckbox')
 
@@ -118,10 +121,14 @@
             case true:
                 isMixedCountryRadio.checked = true
                 isNotMixedCountryRadio.checked = false
+                if (!ifCountryIsSameWrapper.classList.contains('hidden')) {
+                    ifCountryIsSameWrapper.classList.add('hidden')
+                }
                 break;
             case false:
                 isMixedCountryRadio.checked = false
                 isNotMixedCountryRadio.checked = true
+                ifCountryIsSameWrapper.classList.remove('hidden')
                 break;
         }
     }
@@ -288,11 +295,11 @@
         text-decoration: underline;
     }
 
-    .radio-group div + div label{
+    .radio-group div + div label {
         border-left: none;
     }
 
-    /* Select */
+    /* Select todo im aktiven status siehts noch kacke aus */
     select {
         height: 40px;
         border-radius: 0;
@@ -332,6 +339,11 @@
 
         width: 500px; /*todo validieren*/
         height: 500px;
+    }
+
+    /* Country of origin */
+    #ifCountryIsSame.hidden {
+        display: none;
     }
 
 </style>
