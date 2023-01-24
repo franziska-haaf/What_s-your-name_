@@ -55,10 +55,10 @@
         <section id="ifCountryIsSame" class="hidden">
             <select name="countries" class="margin-bottom-8" style="width: 300px;" id="countrySelect">
                 <option value="" selected>Choose country</option>
-                <option value="de">Germany</option>
-                <option value="usa">USA</option>
-                <option value="uk">United Kingdom</option>
             </select>
+            <div id="countryError" class="error hidden">Please choose a country or change the country of origin to be
+                random.
+            </div>
             <div>
                 <input type="checkbox" id="isNationalLanguageCheckbox"/>
                 <label for="isNationalLanguageCheckbox">Non romanized language <span
@@ -73,10 +73,10 @@
     </div>
 </main>
 
+<script type="text/javascript" src="./data.js"></script>
 <script>
-    const GENDERS = {x: 'Neutral', f: 'Female', m: 'Male'}
-    //todo get from data.ts
-    let gender = "Female"
+    let selectedGender = "Female"
+    let selectedCountry = ""
 
     const hasFirstNameCheckbox = document.getElementById('hasFirstNameCheckbox')
     const hasLastNameCheckbox = document.getElementById('hasLastNameCheckbox')
@@ -86,15 +86,33 @@
 
     const isNotMixedCountryRadio = document.getElementById('isNotMixedCountryRadio')
     const isMixedCountryRadio = document.getElementById('isMixedCountryRadio')
+
+    const countrySelect = document.getElementById('countrySelect')
     const ifCountryIsSameWrapper = document.getElementById('ifCountryIsSame')
 
     const isNationalLanguageCheckbox = document.getElementById('isNationalLanguageCheckbox')
 
     const nameError = document.getElementById('nameError')
+    const countryError = document.getElementById('countryError')
+
+    function populateCountries() {
+        let keys = Object.keys(COUNTRIES)
+        for (let i = 0; i < keys.length; i++) {
+            let key = keys[i]
+
+            let newCountryOpt = document.createElement("option")
+            newCountryOpt.value = key;
+            newCountryOpt.innerHTML = COUNTRIES[key];
+            console.log("newCountryOpt: " + newCountryOpt)
+            countrySelect.append(newCountryOpt)
+        }
+    }
+
+    populateCountries()
 
     function changeGender(gen) {
-        gender = gen.value
-        switch (gender) {
+        selectedGender = gen.value
+        switch (selectedGender) {
             case GENDERS.f:
                 genderFemaleRadio.checked = true
                 genderMaleRadio.checked = false
@@ -127,7 +145,13 @@
         if (!hasFirstNameCheckbox.checked && !hasLastNameCheckbox.checked) {
             nameError.classList.remove('hidden')
             return false
+        }
+        if (isMixedCountryRadio.checked && !countrySelect.value) {
+//todo
+            console.log("countrySelect.value: " + countrySelect.value)
+            countryError.classList.remove('hidden')
         } else {
+            countryError.classList.add('hidden')
             nameError.classList.add('hidden')
             return true
         }
@@ -145,7 +169,7 @@
             parent.postMessage({
                 pluginMessage: {
                     type: 'generate- name',
-                    gender,
+                    selectedGender,
                     hasFirstName,
                     hasLastName,
                     isMixedCountry,
@@ -303,6 +327,8 @@
         background-color: #FFAFAF;
         margin-bottom: 16px;
         font-weight: 400;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .error.hidden {
