@@ -3,19 +3,21 @@
         <h1>What's your name?</h1>
 
         <!-- First or last name? -->
-        <section class="align-horizontal">
-            <div class="checkbox">
-                <input type="checkbox" id="hasFirstNameCheckbox" checked/>
-                <label for="hasFirstNameCheckbox">First name</label>
+        <section>
+            <div class="align-horizontal margin-bottom-8">
+                <div class="checkbox">
+                    <input type="checkbox" id="hasFirstNameCheckbox" checked/>
+                    <label for="hasFirstNameCheckbox">First name</label>
+                </div>
+                <div class="checkbox margin-left-24">
+                    <input type="checkbox" id="hasLastNameCheckbox"/>
+                    <label for="hasLastNameCheckbox">Last name</label>
+                </div>
             </div>
-            <div class="checkbox margin-left-24">
-                <input type="checkbox" id="hasLastNameCheckbox"/>
-                <label for="hasLastNameCheckbox">Last name</label>
+            <div id="nameError" class="error hidden">Well... you gotta choose at least one or this won't make
+                sense.
             </div>
         </section>
-        <div id="nameError" class="error hidden">¯\_(ツ)_/¯ Well... you gotta choose at least one or this won't make
-            sense.
-        </div>
 
         <!-- Gender -->
         <section>
@@ -297,9 +299,8 @@
 
     /*Error*/
     .error { /*todo*/
-        color: #9747ff;
         padding: 8px;
-        background-color: rgb(151 71 255 / 10%);
+        background-color: #FFAFAF;
         margin-bottom: 16px;
         font-weight: 400;
     }
