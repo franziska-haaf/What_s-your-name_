@@ -1,81 +1,82 @@
-<!-- First or last name? -->
-<section class="align-horizontal">
-    <div class="input-pair">
-        <input type="checkbox" id="hasFirstNameCheckbox" checked/>
-        <label for="hasFirstNameCheckbox">First name</label>
-    </div>
-    <div class="input-pair margin-left-48">
-        <input type="checkbox" id="hasLastNameCheckbox"/>
-        <label for="hasLastNameCheckbox">Last name</label>
-    </div>
-</section>
-<div id="nameError" class="error hidden">¯\_(ツ)_/¯ Well... you gotta choose at least one or this won't make sense.</div>
+<main>
+    <div class="content">
+        <h1>What's your name?</h1>
 
-<!-- Gender -->
-<section class="margin-top-24">
-    <h2>Common gender</h2>
-    <section class="align-horizontal">
-        <div class="input-pair">
-            <input type="radio" id="isNeutralGender" value="NEUTRAL" checked onclick="changeGender(this)"/>
-            <label for="isNeutralGender">Neutral</label>
+        <!-- First or last name? -->
+        <section class="align-horizontal">
+            <div class="checkbox">
+                <input type="checkbox" id="hasFirstNameCheckbox" checked/>
+                <label for="hasFirstNameCheckbox">First name</label>
+            </div>
+            <div class="checkbox margin-left-24">
+                <input type="checkbox" id="hasLastNameCheckbox"/>
+                <label for="hasLastNameCheckbox">Last name</label>
+            </div>
+        </section>
+        <div id="nameError" class="error hidden">¯\_(ツ)_/¯ Well... you gotta choose at least one or this won't make
+            sense.
         </div>
-        <div class="input-pair margin-left-48">
-            <input type="radio" id="isFemaleGender" value="FEMALE" onclick="changeGender(this)"/>
-            <label for="isFemaleGender">Female</label>
-        </div>
-        <div class="input-pair margin-left-48">
-            <input type="radio" id="isMaleGender" value="MALE" onclick="changeGender(this)"/>
-            <label for="isMaleGender">Male</label>
-        </div>
-    </section>
-</section>
 
-<!-- Country -->
-<section class="margin-top-24">
-    <h2>Common country of origin</h2>
-    <div class="input-pair">
-        <input type="radio" id="isMixedCountryRadio" checked onclick="isMixedCountry(true)"/>
-        <label for="isMixedCountryRadio">
-            Mixed
-            <span class="meta-text">(first and last name are from random countries)</span>
-        </label>
-    </div>
+        <!-- Gender -->
+        <section>
+            <h2>Common gender</h2>
+            <div class="align-horizontal radio-group">
+                <div>
+                    <input type="radio" id="isNeutralGender" value="Neutral" checked onclick="changeGender(this)"/>
+                    <label for="isNeutralGender">Neutral</label>
+                </div>
+                <div>
+                    <input type="radio" id="isFemaleGender" value="Female" onclick="changeGender(this)"/>
+                    <label for="isFemaleGender">Female</label>
+                </div>
+                <div>
+                    <input type="radio" id="isMaleGender" value="Male" onclick="changeGender(this)"/>
+                    <label for="isMaleGender">Male</label>
+                </div>
+            </div>
+        </section>
 
-    <div>
-        <div class="input-pair">
-            <input type="radio" id="isNotMixedCountryRadio" onclick="isMixedCountry(false)"/>
-            <label for="isNotMixedCountryRadio">
-                Same
-                <span class="meta-text">(first and last name are from the same country)</span>
-            </label>
-        </div>
-        <div class="inset-area">
-            <select name="countries" style="width: 300px;" id="countrySelect">
-                <option value="" selected>Choose country (optional)</option>
+        <!-- Country -->
+        <section>
+            <h2>Common country of origin</h2>
+            <div class="margin-bottom-8 text-subtle">Random (probably different) or same countries for the last and first name.</div>
+            <div class="align-horizontal radio-group">
+                <div>
+                    <input type="radio" id="isMixedCountryRadio" checked onclick="isMixedCountry(true)"/>
+                    <label for="isMixedCountryRadio">Random</label>
+                </div>
+                <div>
+                    <input type="radio" id="isNotMixedCountryRadio" onclick="isMixedCountry(false)"/>
+                    <label for="isNotMixedCountryRadio">Same</label>
+                </div>
+            </div>
+        </section>
+        <!-- todo hide if random country -->
+        <section>
+            <select name="countries" class="margin-bottom-8" style="width: 300px;" id="countrySelect">
+                <option value="" selected>Choose country</option>
                 <option value="de">Germany</option>
                 <option value="usa">USA</option>
                 <option value="uk">United Kingdom</option>
             </select>
-            <p class="meta-text">Optional. Is random if none is selected</p>
-
-            <!-- todo only show if necessary -->
-            <div class="input-pair">
+            <div>
                 <input type="checkbox" id="isNationalLanguageCheckbox"/>
-                <label for="isNationalLanguageCheckbox">Use national language</label>
+                <label for="isNationalLanguageCheckbox">Non romanized language <span
+                        class="text-subtle">(if available)</span> </label>
             </div>
-        </div>
+        </section>
     </div>
 
-</section>
-
-<div class="buttons">
-    <button id="close">Close dialog</button>
-    <button id="generate">Generate name</button>
-</div>
+    <div class="buttons">
+        <button id="close">Close dialog</button>
+        <button id="generate" class="filled">Generate name</button>
+    </div>
+</main>
 
 <script>
-    const GENDERS = {NEUTRAL: 'NEUTRAL', FEMALE: 'FEMALE', MALE: 'MALE'}
-    let gender = "NEUTRAL"
+    const GENDERS = {x: 'Neutral', f: 'Female', m: 'Male'}
+    //todo get from data.ts
+    let gender = "Neutral"
 
     const hasFirstNameCheckbox = document.getElementById('hasFirstNameCheckbox')
     const hasLastNameCheckbox = document.getElementById('hasLastNameCheckbox')
@@ -94,17 +95,17 @@
     function changeGender(gen) {
         gender = gen.value
         switch (gender) {
-            case GENDERS.NEUTRAL:
+            case GENDERS.x:
                 genderNeutralRadio.checked = true
                 genderFemaleRadio.checked = false
                 genderMaleRadio.checked = false
                 break;
-            case GENDERS.FEMALE:
+            case GENDERS.f:
                 genderNeutralRadio.checked = false
                 genderFemaleRadio.checked = true
                 genderMaleRadio.checked = false
                 break;
-            case GENDERS.MALE:
+            case GENDERS.m:
                 genderNeutralRadio.checked = false
                 genderFemaleRadio.checked = false
                 genderMaleRadio.checked = true
@@ -172,116 +173,52 @@
         margin: 24px;
     }
 
-    * {
-        color: rgba(0, 0, 0, .87);
-        font-family: 'League Spartan', sans-serif;
-        font-weight: 200;
-        font-size: 14px;
-        accent-color: #A5E3B9;
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    h1, h2 {
-        font-family: 'League Spartan', sans-serif;
-        margin: 0 0 8px;
+    * {
+        color: rgba(0, 0, 0, .87);
+        font-family: 'Dauphine', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 18px;
+        accent-color: #000000;
     }
 
     h1 {
-        font-size: 30px;
+        margin: 0;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 36px;
     }
 
     h2 {
-        font-size: 20px;
+        margin: 0;
+        margin-bottom: 8px;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 24px;
     }
 
-    .align-horizontal {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .meta-text {
-        color: rgba(0, 0, 0, .6);
+    .text-subtle {
+        color: rgba(0, 0, 0, 0.48);
+        font-size: 14px;
     }
 
     p {
         margin: 8px 0;
     }
 
-    .inset-area {
-        margin-left: 34px;
-    }
-
-    /* Inputs */
-    input[type="radio" i], input[type="checkbox" i] {
-        height: 24px;
-        width: 24px;
-        cursor: pointer;
-    }
-
-    input[type="radio" i] {
-        appearance: none;
-        -webkit-appearance: none;
-
-        border-radius: 50%;
-        background: #ffffff;
-        border: 4px solid #FFF;
-        box-shadow: 0 0 0 1px #000;
-        margin: 0;
-    }
-
-    input[type="radio" i]:hover {
-        background: rgba(165, 227, 185, 0.4);
-    }
-
-    input[type="radio" i]:checked {
-        background: #A5E3B9;
-    }
-
-    input + label {
-        margin-left: 8px;
-    }
-
-    label {
-        cursor: pointer;
-        padding-top: 14px;
-        padding-bottom: 10px;
-        display: inline-block;
-    }
-
-    .input-pair {
-        height: 40px;
+    .align-horizontal {
         display: flex;
-        align-items: center;
+        flex-direction: row;
     }
-
-    /*Select*/
-    select {
-        height: 40px;
-        padding: 0 32px 0 16px;
-        border-radius: 0;
-        border: none;
-        outline: 1px solid #000;
-        box-sizing: border-box;
-
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background: #ffffff url("data:image/svg+xml;utf8,<svg viewBox='0 0 140 140' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><g><path d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='black'/></g></svg>") no-repeat right 4px center;
-    }
-
-    select:invalid {
-        color: rgba(0, 0, 0, 0.4);
-    }
-
-    select:focus-visible {
-        border-radius: 0;
-        outline: 2px solid #A5E3B9;
-        border: none;
-    }
-
-    select :first-child {
-        color: rgba(0, 0, 0, .4);
-    }
-
 
     /*Button*/
     .buttons {
@@ -293,31 +230,78 @@
     }
 
     button {
-        font-family: 'League Spartan', sans-serif;
-        font-weight: 700;
-        height: 40px;
         box-sizing: border-box;
-        border: none;
-        background-color: #A5E3B9;
-        border-radius: 0;
-        padding: 0 16px;
+
+        /* Auto layout */
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 24px;
+        gap: 8px;
+        background-color: transparent;
+
+        height: 40px;
+
+        border: 1px solid #000000;
+
         position: relative;
         cursor: pointer;
     }
 
-    button:hover:before {
+    button.filled {
+        background-color: #EEDBFC;
+    }
+
+    button:hover {
+        text-decoration: underline;
+    }
+
+    button.filled:hover {
+    }
+
+    /* Checkbox & Radio */
+    input[type=checkbox] + label,
+    input[type=radio] + label {
+        cursor: pointer;
+        display: inline-block;
+        z-index: 2;
+        padding: 8px;
+        padding-left: 30px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    input[type=checkbox],
+    input[type=radio] {
+        z-index: 3;
         position: absolute;
-        z-index: 100;
-        content: " ";
-        width: 8px;
+        margin-left: 8px;
+        margin-top: 11px;
+    }
+
+    input[type=checkbox]:checked + label,
+    input[type=radio]:checked + label {
+        background: #EEDBFC;
+    }
+
+    input[type=checkbox] + label:hover,
+    input[type=radio] + label:hover {
+        text-decoration: underline;
+    }
+
+    .radio-group div + div label{
+        border-left: none;
+    }
+
+    /* Select */
+    select {
         height: 40px;
-        background-color: #9747ff;
-        left: 0;
-        top: 0;
+        border-radius: 0;
+        border-color: #000000;
+        padding: 8px;
     }
 
     /*Error*/
-    .error {
+    .error { /*todo*/
         color: #9747ff;
         padding: 8px;
         background-color: rgb(151 71 255 / 10%);
@@ -330,17 +314,24 @@
     }
 
     /*Margins*/
-    .margin-top-8 {
-        margin-top: 8px;
+    .margin-bottom-8 {
+        margin-bottom: 8px;
     }
 
-    .margin-top-24 {
-        margin-top: 24px;
+    .margin-left-24 {
+        margin-left: 24px;
     }
 
-    .margin-left-48 {
-        margin-left: 48px;
-    }
+    /* Content */
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+        gap: 24px;
 
+        width: 500px; /*todo validieren*/
+        height: 500px;
+    }
 
 </style>
