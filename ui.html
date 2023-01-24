@@ -76,7 +76,6 @@
 <script type="text/javascript" src="./data.js"></script>
 <script>
     let selectedGender = "Female"
-    let selectedCountry = ""
 
     const hasFirstNameCheckbox = document.getElementById('hasFirstNameCheckbox')
     const hasLastNameCheckbox = document.getElementById('hasLastNameCheckbox')
@@ -103,7 +102,6 @@
             let newCountryOpt = document.createElement("option")
             newCountryOpt.value = key;
             newCountryOpt.innerHTML = COUNTRIES[key];
-            console.log("newCountryOpt: " + newCountryOpt)
             countrySelect.append(newCountryOpt)
         }
     }
@@ -142,19 +140,30 @@
     }
 
     function validateInputs() {
+        let hasNameError = false
+        let hasCountryError = false
+        // First-/Lastname
         if (!hasFirstNameCheckbox.checked && !hasLastNameCheckbox.checked) {
             nameError.classList.remove('hidden')
-            return false
+            hasNameError = true
         }
-        if (isMixedCountryRadio.checked && !countrySelect.value) {
-//todo
-            console.log("countrySelect.value: " + countrySelect.value)
-            countryError.classList.remove('hidden')
-        } else {
-            countryError.classList.add('hidden')
+        if (hasFirstNameCheckbox.checked || hasLastNameCheckbox.checked) {
             nameError.classList.add('hidden')
-            return true
+            hasNameError = false
         }
+        // Country
+        if (!isMixedCountryRadio.checked) {
+            console.log('isMixedCountryRadio.checked ' + isMixedCountryRadio.checked)
+            if(!countrySelect.value){
+                countryError.classList.remove('hidden')
+                hasCountryError = true
+            }
+            if(countrySelect.value){
+                countryError.classList.add('hidden')
+                hasCountryError = false
+            }
+        }
+        return hasCountryError && hasNameError
     }
 
     /**
