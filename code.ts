@@ -1,6 +1,6 @@
 figma.showUI(__html__);
 
-figma.ui.resize(548,548)
+figma.ui.resize(548,548) // w x h of the whole iframe
 
 const GENDERS = {x: "Neutral", f: "Female", m: "Male"}
 const COUNTRIES = {
