@@ -74,6 +74,25 @@
 </main>
 
 <script>
+    const hasFirstNameCheckbox = document.getElementById('hasFirstNameCheckbox')
+    const hasLastNameCheckbox = document.getElementById('hasLastNameCheckbox')
+
+    const genderFemaleRadio = document.getElementById('isFemaleGender')
+    const genderMaleRadio = document.getElementById('isMaleGender')
+
+    const isNotMixedCountryRadio = document.getElementById('isNotMixedCountryRadio')
+    const isMixedCountryRadio = document.getElementById('isMixedCountryRadio')
+
+    const countrySelect = document.getElementById('countrySelect')
+    const ifCountryIsSameWrapper = document.getElementById('ifCountryIsSame')
+
+    const isNonRomanizedLanguageCheckbox = document.getElementById('isNationalLanguageCheckbox')
+
+    const nameError = document.getElementById('nameError')
+    const countryError = document.getElementById('countryError');
+
+    let selectedGender = "Female"
+
     let GENDERS
     let COUNTRIES
 
@@ -89,31 +108,16 @@
         }
     }
 
+    /**
+     * Fetch the data given by code.ts and save it for usage here.
+     * Also use the fetched countries to fill the selects options.
+     * */
     onmessage = (event) => {
         let dataPackage = event.data.pluginMessage
         GENDERS = dataPackage.GENDERS
         COUNTRIES = dataPackage.COUNTRIES
         fillCountries()
     }
-
-    let selectedGender = "Female"
-
-    const hasFirstNameCheckbox = document.getElementById('hasFirstNameCheckbox')
-    const hasLastNameCheckbox = document.getElementById('hasLastNameCheckbox')
-
-    const genderFemaleRadio = document.getElementById('isFemaleGender')
-    const genderMaleRadio = document.getElementById('isMaleGender')
-
-    const isNotMixedCountryRadio = document.getElementById('isNotMixedCountryRadio')
-    const isMixedCountryRadio = document.getElementById('isMixedCountryRadio')
-
-    const countrySelect = document.getElementById('countrySelect')
-    const ifCountryIsSameWrapper = document.getElementById('ifCountryIsSame')
-
-    const isNationalLanguageCheckbox = document.getElementById('isNationalLanguageCheckbox')
-
-    const nameError = document.getElementById('nameError')
-    const countryError = document.getElementById('countryError');
 
     function changeGender(gen) {
         selectedGender = gen.value
@@ -160,7 +164,6 @@
         }
         // Country
         if (!isMixedCountryRadio.checked) {
-            console.log('isMixedCountryRadio.checked ' + isMixedCountryRadio.checked)
             if (!countrySelect.value) {
                 countryError.classList.remove('hidden')
                 hasCountryError = true
@@ -170,7 +173,7 @@
                 hasCountryError = false
             }
         }
-        return hasCountryError && hasNameError
+        return !hasCountryError && !hasNameError
     }
 
     /**
@@ -181,7 +184,7 @@
             let hasFirstName = hasFirstNameCheckbox.checked
             let hasLastName = hasLastNameCheckbox.checked
             let isMixedCountry = isMixedCountryRadio.checked
-            let isNationalLanguage = isNationalLanguageCheckbox.checked
+            let isNonRomanizedLang = isNonRomanizedLanguageCheckbox.checked
             let selectedCountry = countrySelect.value
             parent.postMessage({
                 pluginMessage: {
@@ -190,7 +193,7 @@
                     hasFirstName,
                     hasLastName,
                     isMixedCountry,
-                    isNationalLanguage,
+                    isNonRomanizedLang,
                     selectedCountry
                 }
             }, '*')

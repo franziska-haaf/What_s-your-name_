@@ -43,10 +43,13 @@ figma.ui.postMessage({GENDERS: GENDERS, COUNTRIES: COUNTRIES})
 figma.ui.onmessage = async msg => {
 
     if (msg.type === 'generate- name') {
-        console.log("Gender is: ", msg.gender)
+        debugger;
+        console.log("Gender is: ", msg.selectedGender)
         console.log("First name used: ", msg.hasFirstName)
         console.log("Last name used: ", msg.hasLastName)
         console.log("Is mixed country: ", msg.isMixedCountry)
+        console.log("Is non romanized language: ", msg.isNonRomanizedLang)
+        console.log("Selected country: ", msg.selectedCountry)
 
         /**
          * Generate the figma text object and wrap it in a node, so we can zoom on it later
@@ -62,7 +65,7 @@ figma.ui.onmessage = async msg => {
         /**
          * Build the actual name
          */
-        name.characters = msg.gender + msg.hasFirstName + msg.hasLastName
+        //name.characters = msg.gender + msg.hasFirstName + msg.hasLastName
 
 
         /**
