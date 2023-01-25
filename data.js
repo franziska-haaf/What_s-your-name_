@@ -249,7 +249,7 @@ const COUNTRIES_FULL = {
     "ZW": "Zimbabwe",
     "AX": "Åland Islands"
 };
-const COUNTRIES = {
+export const COUNTRIES = {
     "AU": "Australia",
     "AT": "Austria",
     "BE": "Belgium",
@@ -283,9 +283,9 @@ const COUNTRIES = {
     "VN": "Viet Nam"
 };
 
-const GENDERS = {x: "Neutral", f: "Female", m: "Male"}
+export const GENDERS = {x: "Neutral", f: "Female", m: "Male"}
 
-const SURNAMES = [
+export const SURNAMES = [
     {
         country: COUNTRIES.DE,
         romanized: 'todo',
@@ -1883,7 +1883,7 @@ const SURNAMES = [
     }
 ]
 
-const LASTNAMES = [
+export const LASTNAMES = [
     {
         country: COUNTRIES.AU,
         romanized: 'Smith',
