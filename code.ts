@@ -1,6 +1,6 @@
 figma.showUI(__html__);
 
-figma.ui.resize(600,500)
+figma.ui.resize(548,548)
 
 figma.ui.onmessage = async msg => {
 
