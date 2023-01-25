@@ -37,13 +37,6 @@ const COUNTRIES = {
 const GENDERS = {x: "Neutral", f: "Female", m: "Male"}
 const SURNAMES = [
     {
-        country: COUNTRIES.DE,
-        romanized: 'todo',
-        national: 'todo',
-        gender: GENDERS.x
-    },
-
-    {
         country: COUNTRIES.AU,
         romanized: 'Charlotte',
         national: 'Charlotte',
@@ -2073,34 +2066,30 @@ const LASTNAMES = [
 figma.showUI(__html__);
 figma.ui.resize(548,548) // w x h of the whole iframe
 
-console.log('GENDERS: ' + GENDERS)
 figma.ui.postMessage({GENDERS: GENDERS, COUNTRIES: COUNTRIES})
 
 figma.ui.onmessage = async msg => {
+    let selectedGender: string
+    let hasFirstName
+    let hasLastName
+    let isMixedCountry
+    let isNonRomanizedLang
+    let selectedCountry: { toString: () => string; }
 
     if (msg.type === 'generate- name') {
-        debugger;
-        console.log("Gender is: ", msg.selectedGender)
-        console.log("First name used: ", msg.hasFirstName)
-        console.log("Last name used: ", msg.hasLastName)
-        console.log("Is mixed country: ", msg.isMixedCountry)
-        console.log("Is non romanized language: ", msg.isNonRomanizedLang)
-        console.log("Selected country: ", msg.selectedCountry)
-
-        /**
-         * Generate the figma text object and wrap it in a node, so we can zoom on it later
-         */
-        const nodes: SceneNode[] = []
-        const name = figma.createText()
-        figma.currentPage.appendChild(name)
-        nodes.push(name)
-        // Load the font in the text node before setting the character
+        selectedGender = msg.selectedGender
+        hasFirstName = msg.hasFirstName
+        hasLastName = msg.hasLastName
+        isMixedCountry = msg.isMixedCountry
+        isNonRomanizedLang = msg.isNonRomanizedLang
         // @ts-ignore
-        await figma.loadFontAsync(name.fontName)
-
-        /**
-         * Build the actual name
-         */
+        selectedCountry = COUNTRIES[msg.selectedCountry]
+        console.log("Gender is: ", selectedGender)
+        console.log("First name used: ", hasFirstName)
+        console.log("Last name used: ", hasLastName)
+        console.log("Is mixed country: ", isMixedCountry)
+        console.log("Is non romanized language: ", isNonRomanizedLang)
+        console.log("Selected country: ", selectedCountry)
 
         /**
          * if firstName: take firstName list and
@@ -2115,6 +2104,42 @@ figma.ui.onmessage = async msg => {
          * if isNonRomanizedLang: use non romanized if available
          *
          */
+
+        let filteredSurnames = SURNAMES
+        /**
+         * Filter countries
+         */
+        if(selectedCountry){
+            filteredSurnames = SURNAMES.filter(function(surname){
+                return surname.country.toString() == selectedCountry.toString()
+            })
+        }
+        /**
+         * Filter gender
+         */
+        filteredSurnames = filteredSurnames.filter(function(surname){
+            return surname.gender == selectedGender
+        })
+
+        /**
+         * Choose random name from filtered list
+         *
+         * Math.floor(Math.random() * max);
+         */
+        let randomNumber = Math.floor(Math.random() * (filteredSurnames.length -1));
+        let chosenName = isNonRomanizedLang ? filteredSurnames[randomNumber].national : filteredSurnames[randomNumber].romanized
+        console.log("Chosen name: " + chosenName)
+
+        /**
+         * Generate the figma text object and wrap it in a node, so we can zoom on it later
+         */
+        const nodes: SceneNode[] = []
+        const name = figma.createText()
+        figma.currentPage.appendChild(name)
+        nodes.push(name)
+        // Load the font in the text node before setting the character
+        // @ts-ignore
+        await figma.loadFontAsync(name.fontName)
 
         //name.characters = msg.gender + msg.hasFirstName + msg.hasLastName
 

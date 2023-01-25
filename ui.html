@@ -185,7 +185,7 @@
             let hasLastName = hasLastNameCheckbox.checked
             let isMixedCountry = isMixedCountryRadio.checked
             let isNonRomanizedLang = isNonRomanizedLanguageCheckbox.checked
-            let selectedCountry = countrySelect.value
+            let selectedCountry = isMixedCountry ? '' : countrySelect.value
             parent.postMessage({
                 pluginMessage: {
                     type: 'generate- name',
