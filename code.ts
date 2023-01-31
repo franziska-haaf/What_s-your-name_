@@ -2064,74 +2064,86 @@ const LASTNAMES = [
  */
 
 figma.showUI(__html__);
-figma.ui.resize(548,548) // w x h of the whole iframe
+figma.ui.resize(548, 548) // w x h of the whole iframe
 
 figma.ui.postMessage({GENDERS: GENDERS, COUNTRIES: COUNTRIES})
 
 figma.ui.onmessage = async msg => {
     let selectedGender: string
-    let hasFirstName
-    let hasLastName
-    let isMixedCountry
-    let isNonRomanizedLang
-    let selectedCountry: { toString: () => string; }
+    let hasSurname: boolean
+    let hasLastName: boolean
+    let isMixedCountry: boolean
+    let isNonRomanizedLang: boolean
+    let selectedCountry: string
 
     if (msg.type === 'generate- name') {
         selectedGender = msg.selectedGender
-        hasFirstName = msg.hasFirstName
+        hasSurname = msg.hasSurname
         hasLastName = msg.hasLastName
         isMixedCountry = msg.isMixedCountry
         isNonRomanizedLang = msg.isNonRomanizedLang
+
         // @ts-ignore
         selectedCountry = COUNTRIES[msg.selectedCountry]
-        console.log("Gender is: ", selectedGender)
-        console.log("First name used: ", hasFirstName)
-        console.log("Last name used: ", hasLastName)
-        console.log("Is mixed country: ", isMixedCountry)
-        console.log("Is non romanized language: ", isNonRomanizedLang)
-        console.log("Selected country: ", selectedCountry)
 
         /**
-         * if firstName: take firstName list and
-         * if country != empty: filter for selected country
-         * filter for selected gender
-         * choose a random one
-         * if isNonRomanizedLang: use non romanized if available
-         *
-         * if lastName: take lastName list and
-         * if country != empty: filter for selected country
-         * choose a random one
-         * if isNonRomanizedLang: use non romanized if available
-         *
+         * Generate a random lastname
+         * For an optional country
+         * In romanized or national language
          */
-
-        let filteredSurnames = SURNAMES
-        /**
-         * Filter countries
-         */
-        if(selectedCountry){
-            filteredSurnames = SURNAMES.filter(function(surname){
-                return surname.country.toString() == selectedCountry.toString()
-            })
+        function generateRandomLastname() {
+            let filteredLastnames = LASTNAMES
+            //Country
+            if (selectedCountry) {
+                filteredLastnames = LASTNAMES.filter(function (lastname) {
+                    return lastname.country.toString() == selectedCountry.toString()
+                })
+            }
+            // Choose random
+            let randomNr = Math.floor(Math.random() * (filteredLastnames.length - 1));
+            return isNonRomanizedLang ? filteredLastnames[randomNr].national : filteredLastnames[randomNr].romanized
         }
-        /**
-         * Filter gender
-         */
-        filteredSurnames = filteredSurnames.filter(function(surname){
-            return surname.gender == selectedGender
-        })
 
         /**
-         * Choose random name from filtered list
-         *
-         * Math.floor(Math.random() * max);
+         * Generate a random surname
+         * For an optional country
+         * For a selected gender
+         * In romanized or national language
          */
-        let randomNumber = Math.floor(Math.random() * (filteredSurnames.length -1));
-        let chosenName = isNonRomanizedLang ? filteredSurnames[randomNumber].national : filteredSurnames[randomNumber].romanized
-        console.log("Chosen name: " + chosenName)
+        function generateRandomSurname(): string {
+            let filteredSurnames = SURNAMES
+            //Country
+            if (selectedCountry) {
+                filteredSurnames = SURNAMES.filter(function (surname) {
+                    return surname.country.toString() == selectedCountry.toString()
+                })
+            }
+            // Gender
+            filteredSurnames = filteredSurnames.filter(function (surname) {
+                return surname.gender == selectedGender
+            })
+            // Choose random
+            let randomNr = Math.floor(Math.random() * (filteredSurnames.length - 1));
+
+            // @ts-ignore
+            return isNonRomanizedLang ? filteredSurnames[randomNr].national : filteredSurnames[randomNr].romanized
+        }
+
+        /**
+         * Generate the full name
+         */
+        let fullName = ''
+        if (hasSurname && hasLastName) {
+            fullName = generateRandomSurname() + ' ' + generateRandomLastname()
+        } else if (hasSurname) {
+            fullName = generateRandomSurname()
+        } else if (hasLastName) {
+            fullName = generateRandomLastname()
+        }
 
         /**
          * Generate the figma text object and wrap it in a node, so we can zoom on it later
+         * todo if user selected some textNode already, put it in there
          */
         const nodes: SceneNode[] = []
         const name = figma.createText()
@@ -2141,8 +2153,7 @@ figma.ui.onmessage = async msg => {
         // @ts-ignore
         await figma.loadFontAsync(name.fontName)
 
-        name.characters = chosenName ? chosenName : ''
-
+        name.characters = fullName ? fullName : ''
 
         /**
          * Zoom on the created name

@@ -6,8 +6,8 @@
         <section>
             <div class="align-horizontal margin-bottom-8">
                 <div class="checkbox input-pair">
-                    <input type="checkbox" id="hasFirstNameCheckbox" checked/>
-                    <label for="hasFirstNameCheckbox">First name</label>
+                    <input type="checkbox" id="hasSurnameCheckbox" checked/>
+                    <label for="hasSurnameCheckbox">First name</label>
                 </div>
                 <div class="checkbox margin-left-24 input-pair">
                     <input type="checkbox" id="hasLastNameCheckbox"/>
@@ -73,7 +73,7 @@
 </main>
 
 <script>
-    const hasFirstNameCheckbox = document.getElementById('hasFirstNameCheckbox')
+    const hasSurnameCheckbox = document.getElementById('hasSurnameCheckbox')
     const hasLastNameCheckbox = document.getElementById('hasLastNameCheckbox')
 
     const genderFemaleRadio = document.getElementById('isFemaleGender')
@@ -153,11 +153,11 @@
         let hasNameError = false
         let hasCountryError = false
         // First-/Lastname
-        if (!hasFirstNameCheckbox.checked && !hasLastNameCheckbox.checked) {
+        if (!hasSurnameCheckbox.checked && !hasLastNameCheckbox.checked) {
             nameError.classList.remove('hidden')
             hasNameError = true
         }
-        if (hasFirstNameCheckbox.checked || hasLastNameCheckbox.checked) {
+        if (hasSurnameCheckbox.checked || hasLastNameCheckbox.checked) {
             nameError.classList.add('hidden')
             hasNameError = false
         }
@@ -180,7 +180,7 @@
      * */
     document.getElementById('generate').onclick = () => {
         if (validateInputs()) {
-            let hasFirstName = hasFirstNameCheckbox.checked
+            let hasSurname = hasSurnameCheckbox.checked
             let hasLastName = hasLastNameCheckbox.checked
             let isMixedCountry = isMixedCountryRadio.checked
             let isNonRomanizedLang = isNonRomanizedLanguageCheckbox.checked
@@ -189,7 +189,7 @@
                 pluginMessage: {
                     type: 'generate- name',
                     selectedGender,
-                    hasFirstName,
+                    hasSurname,
                     hasLastName,
                     isMixedCountry,
                     isNonRomanizedLang,
