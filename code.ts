@@ -2141,7 +2141,7 @@ figma.ui.onmessage = async msg => {
         // @ts-ignore
         await figma.loadFontAsync(name.fontName)
 
-        //name.characters = msg.gender + msg.hasFirstName + msg.hasLastName
+        name.characters = chosenName ? chosenName : ''
 
 
         /**

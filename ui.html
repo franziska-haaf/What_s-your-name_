@@ -35,10 +35,9 @@
         </section>
 
         <!-- Country -->
-        <section>
+        <section class="border-top">
             <h2>Common country of origin</h2>
-            <div class="margin-bottom-8 text-subtle">Random (probably different) or same countries for the last and
-                first name.
+            <div class="margin-bottom-8 text-subtle">"Random" most likely leads to different countries for first and last name.
             </div>
             <div class="align-horizontal radio-group">
                 <div class="input-pair">
@@ -47,7 +46,7 @@
                 </div>
                 <div class="input-pair">
                     <input type="radio" id="isNotMixedCountryRadio" onclick="isMixedCountry(false)"/>
-                    <label for="isNotMixedCountryRadio">Same</label>
+                    <label for="isNotMixedCountryRadio">Specified</label>
                 </div>
             </div>
         </section>
@@ -229,7 +228,7 @@
         height: calc(100% - 48px);
         width: calc(100% - 48px);
 
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     * {
@@ -400,6 +399,12 @@
     /* Country of origin */
     #ifCountryIsSame.hidden {
         display: none;
+    }
+
+    /* Borders */
+    .border-top{
+        border-top: 1px solid #000000;
+        padding-top: 8px;
     }
 
 </style>
