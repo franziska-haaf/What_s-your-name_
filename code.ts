@@ -2072,7 +2072,6 @@ figma.ui.onmessage = async msg => {
     let selectedGender: string
     let hasSurname: boolean
     let hasLastName: boolean
-    let isMixedCountry: boolean
     let isNonRomanizedLang: boolean
     let selectedCountry: string
 
@@ -2080,7 +2079,6 @@ figma.ui.onmessage = async msg => {
         selectedGender = msg.selectedGender
         hasSurname = msg.hasSurname
         hasLastName = msg.hasLastName
-        isMixedCountry = msg.isMixedCountry
         isNonRomanizedLang = msg.isNonRomanizedLang
 
         // @ts-ignore
@@ -2141,25 +2139,32 @@ figma.ui.onmessage = async msg => {
             fullName = generateRandomLastname()
         }
 
-        /**
-         * Generate the figma text object and wrap it in a node, so we can zoom on it later
-         * todo if user selected some textNode already, put it in there
-         */
-        const nodes: SceneNode[] = []
-        const name = figma.createText()
-        figma.currentPage.appendChild(name)
-        nodes.push(name)
-        // Load the font in the text node before setting the character
-        // @ts-ignore
-        await figma.loadFontAsync(name.fontName)
 
-        name.characters = fullName ? fullName : ''
-
+        let currentSelectionList = figma.currentPage.selection
         /**
-         * Zoom on the created name
+         * If the user selected a textNode add the name in there
          */
-        figma.currentPage.selection = nodes;
-        figma.viewport.scrollAndZoomIntoView(nodes);
+        if (figma.currentPage.selection.length == 1 && currentSelectionList[0].type == 'TEXT') {
+            let currentSelection = currentSelectionList[0]
+            // @ts-ignore
+            await figma.loadFontAsync(currentSelection.fontName)
+            currentSelection.characters = fullName
+        } else {
+            /**
+             * If not...
+             * generate a new figma text object and wrap it in a node, so we can zoom on it later
+             */
+            const name = figma.createText()
+            figma.currentPage.appendChild(name)
+
+            // @ts-ignore
+            await figma.loadFontAsync(name.fontName)  // Load the font in the text node before setting the character
+
+            name.characters = fullName ? fullName : ''
+            name.x = figma.viewport.center.x
+            name.y = figma.viewport.center.y
+        }
+
     }
     if (msg.type === 'close') {
         figma.closePlugin();
