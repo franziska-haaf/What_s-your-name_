@@ -303,7 +303,8 @@
     }
 
     button.filled {
-        background-color: #EEDBFC;
+        background-color: #000000;
+        color: #ffffff;
     }
 
     button:hover {
@@ -321,7 +322,7 @@
         z-index: 2;
         padding: 8px;
         padding-left: 30px;
-        border: 1px solid rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 1);
     }
 
     input[type=checkbox],
@@ -357,6 +358,12 @@
         border-radius: 0;
         border-color: #000000;
         padding: 8px;
+
+        outline: none;
+    }
+
+    select:focus{
+        box-shadow: 0 0 0 2pt #EEDBFC;
     }
 
     /*Error*/
