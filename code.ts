@@ -1575,57 +1575,66 @@ const SURNAMES = [
 
     {
         country: COUNTRIES.VN,
-        romanized: "Nguyen", national: "Nguyễn",
-        gender: GENDERS.x
+        romanized: 'Minh',
+        national: 'Minh',
+        gender: GENDERS.m
     },
     {
         country: COUNTRIES.VN,
-        romanized: "Trần", national: "Trần",
-        gender: GENDERS.x
+        romanized: 'Huy',
+        national: 'Huy',
+        gender: GENDERS.m
     },
     {
         country: COUNTRIES.VN,
-        romanized: "Lê", national: "Lê",
-        gender: GENDERS.x
+        romanized: 'Quang',
+        national: 'Quang',
+        gender: GENDERS.m
     },
     {
         country: COUNTRIES.VN,
-        romanized: "Phạm", national: "Phạm",
-        gender: GENDERS.x
+        romanized: 'Tuan',
+        national: 'Tuấn',
+        gender: GENDERS.m
     },
     {
         country: COUNTRIES.VN,
-        romanized: "Hoàng", national: "Hoàng",
-        gender: GENDERS.x
-    },
-
-    {
-        country: COUNTRIES.VN,
-        romanized: "Nguyen", national: "Nguyễn",
-        gender: GENDERS.x
+        romanized: 'Duc',
+        national: 'Đức',
+        gender: GENDERS.m
     },
     {
         country: COUNTRIES.VN,
-        romanized: "Trần", national: "Trần",
-        gender: GENDERS.x
+        romanized: 'Diem',
+        national: 'Diễm',
+        gender: GENDERS.f
     },
     {
         country: COUNTRIES.VN,
-        romanized: "Lê", national: "Lê",
-        gender: GENDERS.x
+        romanized: 'Huyen',
+        national: 'Huện',
+        gender: GENDERS.f
     },
     {
         country: COUNTRIES.VN,
-        romanized: "Phạm", national: "Phạm",
-        gender: GENDERS.x
+        romanized: 'Linh',
+        national: 'Linh',
+        gender: GENDERS.f
     },
     {
         country: COUNTRIES.VN,
-        romanized: "Hoàng", national: "Hoàng",
-        gender: GENDERS.x
+        romanized: 'Nga',
+        national: 'Ngạ',
+        gender: GENDERS.f
+    },
+    {
+        country: COUNTRIES.VN,
+        romanized: 'Thao',
+        national: 'Thảo',
+        gender: GENDERS.f
     }
 ]
-export const LASTNAMES = [
+const LASTNAMES = [
     {
         country: COUNTRIES.AU,
         romanized: 'Smith',
@@ -2177,31 +2186,31 @@ export const LASTNAMES = [
         gender: GENDERS.x
     },
     {
-        country:COUNTRIES.JP,
+        country: COUNTRIES.JP,
         romanized: "Sato",
         national: "佐藤",
         gender: GENDERS.x
     },
     {
-        country:COUNTRIES.JP,
+        country: COUNTRIES.JP,
         romanized: "Suzuki",
         national: "鈴木",
         gender: GENDERS.x
     },
     {
-        country:COUNTRIES.JP,
+        country: COUNTRIES.JP,
         romanized: "Takahashi",
         national: "高橋",
         gender: GENDERS.x
     },
     {
-        country:COUNTRIES.JP,
+        country: COUNTRIES.JP,
         romanized: "Tanaka",
         national: "田中",
         gender: GENDERS.x
     },
     {
-        country:COUNTRIES.JP,
+        country: COUNTRIES.JP,
         romanized: "Watanabe",
         national: "渡辺",
         gender: GENDERS.x
