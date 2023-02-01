@@ -283,7 +283,7 @@ export const COUNTRIES = {
     "VN": "Viet Nam"
 };
 
-export const GENDERS = {x: "Neutral", f: "Female", m: "Male"}
+export const GENDERS = {x: GENDERS.x, f: "Female", m: "Male"}
 
 export const SURNAMES = [
     {
@@ -2314,7 +2314,496 @@ export const LASTNAMES = [
         gender: GENDERS.x
     },
 
+    {
+        country: COUNTRIES.IN,
+        romanized: "Sharma",
+        national: "शर्मा",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IN,
+        romanized: "Gupta",
+        national: "गुप्ता",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IN,
+        romanized: "Kumar",
+        national: "कुमार",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IN,
+        romanized: "Shukla",
+        national: "शुक्ला",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IN,
+        romanized: 'Sharma',
+        national: 'शर्मा',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IL,
+        romanized: 'Cohen',
+        national: 'כהן',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IL,
+        romanized: "Gross",
+        national: "גרוס",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IL,
+        romanized: 'Levy',
+        national: 'לוי',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IL,
+        romanized: 'Mizrahi',
+        national: 'מזרחי',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IL,
+        romanized: 'Peres',
+        national: 'פרס',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IR,
+        romanized: 'Hosseini',
+        national: 'حسینی',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IR,
+        romanized: 'Jafari',
+        national: 'جعفری',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IR,
+        romanized: 'Khan',
+        national: 'خان',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IR,
+        romanized: 'Rashti',
+        national: 'رشتی',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IR,
+        romanized: 'Rezai',
+        national: 'رضایی',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IT,
+        romanized: " Rossi",
+        national: " Rossi",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IT,
+        romanized: "Ferrari",
+        national: "Ferrari",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IT,
+        romanized: "Bianchi",
+        national: "Bianchi",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IT,
+        romanized: "Rizzo",
+        national: "Rizzo",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.IT,
+        romanized: "Romero",
+        national: "Romero",
+        gender: GENDERS.x
+    },
+    {
+        country:COUNTRIES.JP,
+        romanized: "Sato",
+        national: "佐藤",
+        gender: GENDERS.x
+    },
+    {
+        country:COUNTRIES.JP,
+        romanized: "Suzuki",
+        national: "鈴木",
+        gender: GENDERS.x
+    },
+    {
+        country:COUNTRIES.JP,
+        romanized: "Takahashi",
+        national: "高橋",
+        gender: GENDERS.x
+    },
+    {
+        country:COUNTRIES.JP,
+        romanized: "Tanaka",
+        national: "田中",
+        gender: GENDERS.x
+    },
+    {
+        country:COUNTRIES.JP,
+        romanized: "Watanabe",
+        national: "渡辺",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.KR,
+        romanized: "Kim",
+        national: "김",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.KR,
+        romanized: "Park",
+        national: "박",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.KR,
+        romanized: "Lee",
+        national: "이",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.KR,
+        romanized: "Choi",
+        national: "최",
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.KR,
+        romanized: "Jung",
+        national: "정",
+        gender: GENDERS.x
+    },
 
+    {
+        country: COUNTRIES.NG,
+        romanized: 'Adebayo',
+        national: 'Adebayo',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NG,
+        romanized: 'Eze',
+        national: 'Eze',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NG,
+        romanized: 'Idowu',
+        national: 'Idowu',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NG,
+        romanized: 'Nwankwo',
+        national: 'Nwankwo',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NG,
+        romanized: 'Ogundipe',
+        national: 'Ogundipe',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.LT,
+        romanized: 'Jonaitis',
+        national: 'Jonaitis',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.LT,
+        romanized: 'Jankauskas',
+        national: 'Jankauskas',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.LT,
+        romanized: 'Petrauskas',
+        national: 'Petrauskas',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.LT,
+        romanized: 'Pavardenis',
+        national: 'Pavardenis',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.LT,
+        romanized: 'Rimkus',
+        national: 'Rimkus',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.NL,
+        romanized: 'Van den Berg',
+        national: 'Van den Berg',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NL,
+        romanized: 'De Vries',
+        national: 'De Vries',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NL,
+        romanized: 'Van der Meer',
+        national: 'Van der Meer',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NL,
+        romanized: 'Van Dijk',
+        national: 'Van Dijk',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NL,
+        romanized: 'Janssen',
+        national: 'Janssen',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.NZ,
+        romanized: 'Karekare',
+        national: 'Karekare',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NZ,
+        romanized: 'Kiriona',
+        national: 'Kiriona',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NZ,
+        romanized: 'Smith',
+        national: 'Smith',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NZ,
+        romanized: 'Wilson',
+        national: 'Wilson',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NZ,
+        romanized: 'Jones',
+        national: 'Jones',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.NO,
+        romanized: 'Jensen',
+        national: 'Jensen',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NO,
+        romanized: 'Hansen',
+        national: 'Hansen',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NO,
+        romanized: 'Larsen',
+        national: 'Larsen',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NO,
+        romanized: 'Andreassen',
+        national: 'Andreassen',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.NO,
+        romanized: 'Pettersen',
+        national: 'Pettersen',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.UA,
+        romanized: 'Kyrylenko',
+        national: 'Кириленко',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.UA,
+        romanized: 'Petrenko',
+        national: 'Петренко',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.UA,
+        romanized: 'Semenenko',
+        national: 'Семененко',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.UA,
+        romanized: 'Shapoval',
+        national: 'Шаповал',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.UA,
+        romanized: 'Vasylenko',
+        national: 'Василенко',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.SE,
+        romanized: 'Andersson',
+        national: 'Andersson',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.SE,
+        romanized: 'Johansson',
+        national: 'Johansson',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.SE,
+        romanized: 'Karlsson',
+        national: 'Karlsson',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.SE,
+        romanized: 'Nilsson',
+        national: 'Nilsson',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.SE,
+        romanized: 'Eriksson',
+        national: 'Eriksson',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.TR,
+        romanized: 'Özkan',
+        national: 'Özkan',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.TR,
+        romanized: 'Çelik',
+        national: 'Çelik',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.TR,
+        romanized: 'Yılmaz',
+        national: 'Yılmaz',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.TR,
+        romanized: 'Kaya',
+        national: 'Kaya',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.TR,
+        romanized: 'Demir',
+        national: 'Demir',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.TN,
+        romanized: 'Abdulaziz',
+        national: 'عبد العزيز',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.TN,
+        romanized: 'Ajroud',
+        national: 'عجرود',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.TN,
+        romanized: 'Ben Salah',
+        national: 'بن صالح',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.TN,
+        romanized: 'Cherif',
+        national: 'شريف',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.TN,
+        romanized: 'Kallel',
+        national: 'كلال',
+        gender: GENDERS.x
+    },
+
+    {
+        country: COUNTRIES.VN,
+        romanized: 'Nguyen',
+        national: 'Nguyễn',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.VN,
+        romanized: 'Trần',
+        national: 'Trần',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.VN,
+        romanized: 'Lê',
+        national: 'Lê',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.VN,
+        romanized: 'Hoàng',
+        national: 'Hoàng',
+        gender: GENDERS.x
+    },
+    {
+        country: COUNTRIES.VN,
+        romanized: 'Phạm',
+        national: 'Phạm',
+        gender: GENDERS.x
+    }
 ]
 
-// Continue with generation from india - vietnam
+// todo Note: In Japan, last names are usually written before first names.
