@@ -35,11 +35,11 @@
         </section>
 
         <!-- Country -->
-        <section class="border-top">
+        <section class="width-100p">
             <h2>Common country of origin</h2>
             <div class="margin-bottom-8 text-subtle">"Random" most likely leads to different countries for first and last name.
             </div>
-            <div class="align-horizontal radio-group">
+            <div class="align-horizontal radio-group margin-bottom-8">
                 <div class="input-pair">
                     <input type="radio" id="isMixedCountryRadio" checked onclick="isMixedCountry(true)"/>
                     <label for="isMixedCountryRadio">Random</label>
@@ -49,20 +49,23 @@
                     <label for="isNotMixedCountryRadio">Specified</label>
                 </div>
             </div>
+            <div id="ifCountryIsSame" class="hidden">
+                <select name="countries" class="margin-bottom-8" id="countrySelect">
+                    <option value="" selected>Choose country</option>
+                </select>
+                <div id="countryError" class="error hidden">Please choose a country or change the country of origin to be
+                    random.
+                </div>
+            </div>
         </section>
 
-        <section id="ifCountryIsSame" class="hidden">
-            <select name="countries" class="margin-bottom-8" id="countrySelect">
-                <option value="" selected>Choose country</option>
-            </select>
-            <div id="countryError" class="error hidden">Please choose a country or change the country of origin to be
-                random.
-            </div>
-            <div class="input-pair">
-                <input type="checkbox" id="isNationalLanguageCheckbox"/>
-                <label for="isNationalLanguageCheckbox">Non romanized language <span
-                        class="text-subtle">(if available)</span> </label>
-            </div>
+
+
+        <!-- Romanized or not -->
+        <section class="input-pair">
+            <input type="checkbox" id="isNationalLanguageCheckbox"/>
+            <label for="isNationalLanguageCheckbox">Non romanized language <span
+                    class="text-subtle">(if available)</span> </label>
         </section>
     </div>
 
@@ -386,6 +389,10 @@
         margin-left: 24px;
     }
 
+    .width-100p{
+        width: 100%;
+    }
+
     /* Content */
     .content {
         display: flex;
@@ -398,12 +405,6 @@
     /* Country of origin */
     #ifCountryIsSame.hidden {
         display: none;
-    }
-
-    /* Borders */
-    .border-top{
-        border-top: 1px solid #000000;
-        padding-top: 8px;
     }
 
 </style>
